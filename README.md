@@ -62,7 +62,7 @@ your OS shell runs the above Python interpreter (unless a virtual environment is
 - Display tables in the database `.tables`
 - Display columns in the profiles table, `pragma table_info(Python-OC-Lettings_profile);`
 - Run a query on the profiles table, `select user_id, favorite_city from
-  oc_lettings_site_profile where favorite_city like 'B%';`
+  Python-OC-Lettings_profile where favorite_city like 'B%';`
 - `.quit` to exit
 
 #### Admin panel
