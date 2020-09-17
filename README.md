@@ -19,11 +19,11 @@ your OS shell runs the above Python interpreter (unless a virtual environment is
 #### Clone the repository
 
 - `cd /path/to/put/project/in`
-- `git clone https://github.com/grking8/oc-lettings-site.git`
+- `git clone https://github.com/OpenClassrooms-Student-Center/Python-OC-Lettings.git`
 
 #### Create the virtual environment
 
-- `cd /path/to/oc-lettings-site`
+- `cd /path/to/Python-OC-Lettings`
 - `python -m venv venv`
 - `apt-get install python3-venv` (If previous step errors with package not found on Ubuntu)
 - Activate the environment `source venv/bin/activate`
@@ -35,7 +35,7 @@ your OS shell runs the above Python interpreter (unless a virtual environment is
 
 #### Run the site
 
-- `cd /path/to/oc-lettings-site`
+- `cd /path/to/Python-OC-Lettings`
 - `source venv/bin/activate`
 - `pip install --requirement requirements.txt`
 - `python manage.py runserver`
@@ -44,23 +44,23 @@ your OS shell runs the above Python interpreter (unless a virtual environment is
 
 #### Linting
 
-- `cd /path/to/oc-lettings-site`
+- `cd /path/to/Python-OC-Lettings`
 - `source venv/bin/activate`
 - `flake8`
 
 #### Unit tests
 
-- `cd /path/to/oc-lettings-site`
+- `cd /path/to/Python-OC-Lettings`
 - `source venv/bin/activate`
 - `pytest`
 
 #### Database
 
-- `cd /path/to/oc-lettings-site`
+- `cd /path/to/Python-OC-Lettings`
 - Open a shell session `sqlite3`
-- Connect to the database `.open oc-lettings-site.sqlite3`
+- Connect to the database `.open Python-OC-Lettings.sqlite3`
 - Display tables in the database `.tables`
-- Display columns in the profiles table, `pragma table_info(oc_lettings_site_profile);`
+- Display columns in the profiles table, `pragma table_info(Python-OC-Lettings_profile);`
 - Run a query on the profiles table, `select user_id, favorite_city from
   oc_lettings_site_profile where favorite_city like 'B%';`
 - `.quit` to exit
