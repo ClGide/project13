@@ -58,7 +58,7 @@ your OS shell runs the above Python interpreter (unless a virtual environment is
 
 - `cd /path/to/Python-OC-Lettings`
 - Open a shell session `sqlite3`
-- Connect to the database `.open Python-OC-Lettings.sqlite3`
+- Connect to the database `.open oc-lettings-site.sqlite3`
 - Display tables in the database `.tables`
 - Display columns in the profiles table, `pragma table_info(Python-OC-Lettings_profile);`
 - Run a query on the profiles table, `select user_id, favorite_city from
