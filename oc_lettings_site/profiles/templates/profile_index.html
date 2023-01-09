@@ -4,7 +4,7 @@
     <ul>
     {% for profile in profiles_list %}
         <li>
-            <a href="{% url 'profile' username=profile.user.username %}">
+            <a href="{% url 'oc_lettings_site.profiles:profile' username=profile.user.username %}">
                 {{ profile.user.username }}
             </a>
         </li>
@@ -13,5 +13,5 @@
 {% else %}
     <p>No profiles are available.</p>
 {% endif %}
-<div><a href="{% url 'index' %}">Home</a></div>
-<div><a href="{% url 'lettings_index' %}">Lettings</a></div>
+<div><a href="{% url 'welcome' %}">Home</a></div>
+<div><a href="{% url 'oc_lettings_site.lettings:index' %}">Lettings</a></div>
