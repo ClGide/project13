@@ -56,5 +56,3 @@ def test_profile(fill_profile_db, client, username, title):
     url = reverse("oc_lettings_site.profiles:profile", kwargs={"username": username})
     response = client.get(url)
     assert title in response.content
-
-

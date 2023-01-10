@@ -8,6 +8,3 @@ def test_view(client):
     url = reverse("welcome")
     response = client.get(url)
     assert b"Welcome to Holiday Homes" in response.content
-
-
-

@@ -57,5 +57,3 @@ def test_letting(fill_letting_db, client, letting_id, title):
     url = reverse("oc_lettings_site.lettings:letting", kwargs={"letting_id": letting_id})
     response = client.get(url)
     assert title in response.content
-
-
