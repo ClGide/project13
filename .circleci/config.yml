@@ -15,7 +15,7 @@ jobs:
     steps:
       - checkout
       - run:
-        - python -m pytest
+        - "python -m pytest"
   lint:
     working_directory: ~/circleci-python
     docker:
@@ -23,7 +23,7 @@ jobs:
     steps:
       - checkout
       - run:
-        - python -m flake8
+        - "python -m flake8"
 
 workflows:
   build_and_test:
