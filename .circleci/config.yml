@@ -6,7 +6,14 @@ jobs:
       - image: circleci/python:3.6.4
     steps:
       - checkout
-      - run: python manage.py runserver
+      - run:
+        - name: install dependencies start server
+        - command: |
+          pip install --upgrade pip 
+          python -m venv venv 
+          . venv/bin/activate
+          pip install -r requirements.txt
+          python manage.py runserver
   test:
     working_directory: ~/circleci-python
     docker:
