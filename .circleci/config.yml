@@ -14,6 +14,7 @@ jobs:
           . venv/bin/activate
           pip install -r requirements.txt
           python manage.py runserver
+
   test:
     working_directory: ~/circleci-python
     docker:
