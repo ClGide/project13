@@ -14,7 +14,13 @@ jobs:
             pip install -r requirements.txt
             pip uninstall six
             pip install six
+      - run:
+          name: Run linting
+          command: |             
             python -m flake8
+      - run:
+          name: Run tests
+          command: |             
             python -m pytest
             
 
