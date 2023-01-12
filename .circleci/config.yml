@@ -12,20 +12,28 @@ jobs:
             python -m venv venv
             . venv/bin/activate 
             pip install -r requirements.txt
-  test:
-    working_directory: ~/circleci-python
-    docker:
-      - image: cimg/python:3.10.1
-    steps:
-      - checkout
-      - run: "python -m pytest"
   lint:
     working_directory: ~/circleci-python
     docker:
       - image: cimg/python:3.10.1
     steps:
       - checkout
-      - run: "python -m flake8"
+      - run:
+          name: Run tests
+          command: |
+            . venv/bin/activate
+            python -m flake8
+  test:
+    working_directory: ~/circleci-python
+    docker:
+      - image: cimg/python:3.10.1
+    steps:
+      - checkout
+      - run:
+          name: Run linting
+          command: | 
+            . venv/bin/activate 
+            python -m pytest
 
 workflows:
   build_and_test:
