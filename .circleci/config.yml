@@ -17,10 +17,12 @@ jobs:
       - run:
           name: Run linting
           command: |             
+            . venv/bin/activate 
             python -m flake8
       - run:
           name: Run tests
-          command: |             
+          command: |            
+            . venv/bin/activate 
             python -m pytest
             
 
