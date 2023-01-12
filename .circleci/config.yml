@@ -1,6 +1,6 @@
 version: 2.1
 jobs:
-  build-test-lint:
+  build_test_lint:
     working_directory: ~/circleci-python
     docker:
       - image: cimg/python:3.10.1
@@ -12,10 +12,13 @@ jobs:
             python -m venv venv
             . venv/bin/activate 
             pip install -r requirements.txt
+            pip uninstall six
+            pip install six
             python -m flake8
             python -m pytest
+            
 
 workflows:
   build_deploy:
     jobs:
-      - build-test-lint
+      - build_test_lint
