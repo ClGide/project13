@@ -1,6 +1,6 @@
 version: 2.1
 jobs:
-  build:
+  build-test-lint:
     working_directory: ~/circleci-python
     docker:
       - image: cimg/python:3.10.1
@@ -12,38 +12,6 @@ jobs:
             python -m venv venv
             . venv/bin/activate 
             pip install -r requirements.txt
-  lint:
-    working_directory: ~/circleci-python
-    docker:
-      - image: cimg/python:3.10.1
-    steps:
-      - checkout
-      - run:
-          name: Run tests
-          command: |
-            python -m venv venv
-            . venv/bin/activate
             python -m flake8
-  test:
-    working_directory: ~/circleci-python
-    docker:
-      - image: cimg/python:3.10.1
-    steps:
-      - checkout
-      - run:
-          name: Run linting
-          command: |
-            python -m venv venv
-            . venv/bin/activate 
             python -m pytest
 
-workflows:
-  build_and_test:
-    jobs:
-      - build
-      - lint:
-          requires:
-            - build
-      - test:
-          requires:
-            - lint
