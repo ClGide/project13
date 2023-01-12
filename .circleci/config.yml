@@ -21,6 +21,7 @@ jobs:
       - run:
           name: Run tests
           command: |
+            python -m venv venv
             . venv/bin/activate
             python -m flake8
   test:
@@ -31,7 +32,8 @@ jobs:
       - checkout
       - run:
           name: Run linting
-          command: | 
+          command: |
+            python -m venv venv
             . venv/bin/activate 
             python -m pytest
 
