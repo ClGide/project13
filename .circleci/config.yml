@@ -3,21 +3,21 @@ jobs:
   build:
     working_directory: ~/circleci-python
     docker:
-      - image: circleci/python:3.11.0
+      - image: circleci/python:3.6.4
     steps:
       - checkout
       - run: python manage.py runserver
   test:
     working_directory: ~/circleci-python
     docker:
-      - image: circleci/python:3.11.0
+      - image: circleci/python:3.6.4
     steps:
       - checkout
       - run: "python -m pytest"
   lint:
     working_directory: ~/circleci-python
     docker:
-      - image: circleci/python:3.11.0
+      - image: circleci/python:3.6.4
     steps:
       - checkout
       - run: "python -m flake8"
