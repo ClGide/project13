@@ -15,3 +15,7 @@ jobs:
             python -m flake8
             python -m pytest
 
+workflows:
+  build_deploy:
+    jobs:
+      - build-test-lint
