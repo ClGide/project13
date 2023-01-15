@@ -47,3 +47,6 @@ workflows:
   build_deploy:
     jobs:
       - build_test_lint
+      - containerization:
+          requires:
+            - build_test_lint
