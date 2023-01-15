@@ -35,7 +35,7 @@ jobs:
       - run:
           name: build and push image
           command: |
-            docker build -t $DOCKER_LOGIN/oclproject:$CIRCLE_SHA1 .
+            docker build -t oclproject:$CIRCLE_SHA1 .
             # I could directly pass the passwd with the -p option. However, Using 
             # STDIN prevents the password from ending up in the shell’s history, or log-files.
             echo $DOCKER_PASSWORD | docker login -u $DOCKER_LOGIN --password-stdin 
