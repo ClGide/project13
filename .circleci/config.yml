@@ -24,7 +24,24 @@ jobs:
           command: |            
             . venv/bin/activate 
             python -m pytest
-            
+
+  containerization:
+    docker:
+      - image: cimg/python:3.10.1
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - run:
+          name: build and push image
+          command: |
+            docker build -t $DOCKER_LOGIN/oclproject:$CIRCLE_SHA1 .
+            # I could directly pass the passwd with the -p option. However, Using 
+            # STDIN prevents the password from ending up in the shell’s history, or log-files.
+            echo $DOCKER_PASSWORD | docker login -u $DOCKER_LOGIN --password-stdin 
+            docker push $DOCKER_LOGIN/oclproject:$CIRCLE_SHA1
+          
+          
 
 workflows:
   build_deploy:
