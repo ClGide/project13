@@ -33,18 +33,13 @@ jobs:
       - setup_remote_docker:
           docker_layer_caching: true
       - run:
-          name: check env variables
-          command: |
-            echo $DOCKER_USERNAME $DOCKER_PASSWD
-      - run:
           name: build and push image
           command: |
-            docker build -t ocrproject13:$CIRCLE_SHA1 .
+            docker build -t $DOCKER_USERNAME/ocrproject13:$CIRCLE_SHA1 .
             # I could directly pass the passwd with the -p option. However, Using 
             # STDIN prevents the password from ending up in the shell’s history, or log-files.
             echo $DOCKER_PASSWD | docker login -u $DOCKER_USERNAME --password-stdin 
-            docker push ocrproject13:$CIRCLE_SHA1
-          
+            docker push $DOCKER_USERNAME/ocrproject13:$CIRCLE_SHA1
           
 
 workflows:
