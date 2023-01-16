@@ -33,6 +33,10 @@ jobs:
       - setup_remote_docker:
           docker_layer_caching: true
       - run:
+          name: check env variables
+          command: |
+            - echo $DOCKER_USERNAME $DOCKER_PASSWD
+      - run:
           name: build and push image
           command: |
             docker build -t ocrproject13:$CIRCLE_SHA1 .
