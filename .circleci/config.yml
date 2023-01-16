@@ -35,7 +35,7 @@ jobs:
       - run:
           name: check env variables
           command: |
-            - echo $DOCKER_USERNAME $DOCKER_PASSWD
+            echo $DOCKER_USERNAME $DOCKER_PASSWD
       - run:
           name: build and push image
           command: |
