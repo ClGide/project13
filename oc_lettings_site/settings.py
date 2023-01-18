@@ -1,5 +1,14 @@
 import os
+import sentry_sdk
 
+sentry_sdk.init(
+    dsn="https://31dde75712a9421a8955b64c5c4eebd8@o4504526245462016.ingest.sentry.io/4504526256275456",
+
+    # Set traces_sample_rate to 1.0 to capture 100%
+    # of transactions for performance monitoring.
+    # We recommend adjusting this value in production.
+    traces_sample_rate=1.0
+)
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
