@@ -48,5 +48,8 @@ workflows:
       - build_test_lint
       - containerization:
           context: project13
+          filters:
+            branches:
+              only: main
           requires:
             - build_test_lint
