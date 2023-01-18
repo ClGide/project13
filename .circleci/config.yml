@@ -50,3 +50,6 @@ workflows:
           context: project13
           requires:
             - build_test_lint
+          filters:
+            branches:
+              only: master
