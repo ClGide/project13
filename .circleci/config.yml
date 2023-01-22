@@ -45,7 +45,7 @@ jobs:
     steps:
       - run:
           name: download heroku and check it's working
-          command:
+          command: |
             curl https://cli-assets.heroku.com/install.sh | sh
             echo heroku --version
 
