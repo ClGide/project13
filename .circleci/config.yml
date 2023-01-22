@@ -40,6 +40,15 @@ jobs:
             # STDIN prevents the password from ending up in the shell’s history, or log-files.
             echo $DOCKER_PASSWD | docker login -u $DOCKER_USERNAME --password-stdin 
             docker push $DOCKER_USERNAME/ocrproject13:$CIRCLE_SHA1
+
+  deployment:
+    machine: true
+    steps:
+      - run:
+          name: download heroku and check it's working
+          command:
+            curl https://cli-assets.heroku.com/install.sh | sh
+
           
 
 workflows:
@@ -50,6 +59,12 @@ workflows:
           context: project13
           requires:
             - build_test_lint
+          filters:
+            branches:
+              only: master
+      - deployment:
+          requires:
+            - containerization
           filters:
             branches:
               only: master
