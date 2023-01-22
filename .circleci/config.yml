@@ -46,10 +46,9 @@ jobs:
       - run:
           name: download heroku and check it's working
           command: |
-            curl https://cli-assets.heroku.com/install.sh | sh
-            heroku --version
+            sudo curl https://cli-assets.heroku.com/install.sh | sh
+            heroku login -i $HEROKU_USERNAME/$HEROKU_PASSWD
 
-          
 
 workflows:
   build_deploy:
