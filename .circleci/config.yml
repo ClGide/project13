@@ -48,13 +48,13 @@ jobs:
           command: |
             sudo curl https://cli-assets.heroku.com/install.sh | sh
             
-            sudo apt-get install expect 
+            sudo apt-get install expect -f
             
             cat \<<EOF > heroku_login.exp
             #!/usr/bin/expect 
             spawn heroku login -i  
             
-            expect "Email:"
+            expect "heroku: Enter your login credentials\nEmail:"
             
             send "$HEROKU_EMAIL";
             
