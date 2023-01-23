@@ -48,7 +48,7 @@ jobs:
           command: |
             sudo curl https://cli-assets.heroku.com/install.sh | sh
             heroku auth:login -i $HEROKU_USERNAME $HEROKU_PASSWD
-
+            heroku create 
 
 workflows:
   build_deploy:
