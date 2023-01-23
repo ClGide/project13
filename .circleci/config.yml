@@ -52,8 +52,11 @@ jobs:
               sleep 1 
               echo $HEROKU_PASSWD
             } | heroku auth:login -i  
-            heroku create 
-            $DOCKER_PASSWD | docker login --username $DOCKER_USERNAME --password-stdin registry.heroku.com
+            # heroku create oc-lettings-81
+            # docker tag <image> registry.heroku.com/oc-lettings-81/web
+            # docker push registry.heroku.com/oc-lettings-81/web
+            # heroku container release web 
+            # $DOCKER_PASSWD | docker login --username $DOCKER_USERNAME --password-stdin registry.heroku.com
             
 
 workflows:
