@@ -50,7 +50,7 @@ jobs:
             
             sudo apt-get install expect 
             
-            cat <<EOF > heroku_login.exp
+            cat \<<EOF > heroku_login.exp
             #!/usr/bin/expect 
             spawn heroku "login"
             
