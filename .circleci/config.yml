@@ -47,7 +47,11 @@ jobs:
           name: download heroku and check it's working
           command: |
             sudo curl https://cli-assets.heroku.com/install.sh | sh
-            heroku auth:login -i $HEROKU_USERNAME $HEROKU_PASSWD
+            {
+              echo $HEROKU_USERNAME
+              sleep 1 
+              echo $HEROKU_PASSWD
+            } | heroku auth:login -i  
             heroku create 
             $DOCKER_PASSWD | docker login --username $DOCKER_USERNAME --password-stdin registry.heroku.com
             
