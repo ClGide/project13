@@ -52,7 +52,7 @@ jobs:
             
             cat \<<EOF > heroku_login.exp
             #!/usr/bin/expect 
-            spawn heroku login -i  
+            spawn "heroku login -i"
             
             expect 'heroku: Enter your login credentials
             Email:'
