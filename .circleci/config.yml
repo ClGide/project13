@@ -56,7 +56,7 @@ jobs:
             
             expect "Email:"
             
-            send "$HEROKU_USERNAME";
+            send "$HEROKU_EMAIL";
             
             send "\r"
             
@@ -71,7 +71,6 @@ jobs:
             
             expect heroku_login.exp
             
-            #(echo "$HEROKU_USERNAME" ; echo "$HEROKU_PASSWD") | heroku auth:login 
             heroku create oc-lettings-81
             # docker tag $DOCKER_USERNAME/ocrproject13:$CIRCLE_SHA1 registry.heroku.com/oc-lettings-81/web
             # docker push registry.heroku.com/oc-lettings-81/web
