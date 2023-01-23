@@ -47,7 +47,7 @@ jobs:
           name: download heroku and check it's working
           command: |
             sudo curl https://cli-assets.heroku.com/install.sh | sh
-            (echo -e "$HEROKU_USERNAME\\n$HEROKU_PASSWD\\n") | heroku auth:login -i
+            (echo "$HEROKU_USERNAME" ; echo "$HEROKU_PASSWD") | heroku auth:login -i
             heroku create oc-lettings-81
             # docker tag <image> registry.heroku.com/oc-lettings-81/web
             # docker push registry.heroku.com/oc-lettings-81/web
