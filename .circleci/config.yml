@@ -54,7 +54,8 @@ jobs:
             #!/usr/bin/expect 
             spawn heroku login -i  
             
-            expect "heroku: Enter your login credentials\nEmail:\nEmail:\nEmail:"
+            expect 'heroku: Enter your login credentials
+            Email:'
             
             send "$HEROKU_EMAIL";
             
