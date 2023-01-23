@@ -47,12 +47,36 @@ jobs:
           name: download heroku and check it's working
           command: |
             sudo curl https://cli-assets.heroku.com/install.sh | sh
-            (echo "$HEROKU_USERNAME" ; echo "$HEROKU_PASSWD") | heroku auth:login 
+            
+            sudo apt-get install expect 
+            
+            cat <<EOF > heroku_login.exp
+            #!/usr/bin/expect 
+            spawn heroku "login"
+            
+            expect "Email:"
+            
+            send "$HEROKU_USERNAME";
+            
+            send "\r"
+            
+            expect "Password (typing will be hidden):"
+            
+            send "$HEROKU_PASSWD"
+            
+            send "\r"
+            
+            interact
+            EOF
+            
+            expect heroku_login.exp
+            
+            #(echo "$HEROKU_USERNAME" ; echo "$HEROKU_PASSWD") | heroku auth:login 
             heroku create oc-lettings-81
-            # docker tag <image> registry.heroku.com/oc-lettings-81/web
+            # docker tag $DOCKER_USERNAME/ocrproject13:$CIRCLE_SHA1 registry.heroku.com/oc-lettings-81/web
             # docker push registry.heroku.com/oc-lettings-81/web
             # heroku container release web 
-            # $DOCKER_PASSWD | docker login --username $DOCKER_USERNAME --password-stdin registry.heroku.com
+            # $DOCKER_PASSWD | docker login -u $DOCKER_USERNAME --password-stdin registry.heroku.com
             
 
 workflows:
