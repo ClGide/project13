@@ -47,30 +47,13 @@ jobs:
           name: download heroku and check it's working
           command: |
             sudo curl https://cli-assets.heroku.com/install.sh | sh
-            
-            sudo apt-get install expect -f
-            
-            cat \<<EOF > heroku_login.exp
-            #!/usr/bin/expect 
-            spawn "heroku login -i"
-            
-            expect 'heroku: Enter your login credentials
-            Email:'
-            
-            send "$HEROKU_EMAIL";
-            
-            send "\r"
-            
-            expect "Password (typing will be hidden):"
-            
-            send "$HEROKU_PASSWD"
-            
-            send "\r"
-            
-            interact
-            EOF
-            
-            expect heroku_login.exp
+            printf "machine api.heroku.com
+              login $HEROKU_EMAIL
+              password $HEROKU_TOKEN
+            machine git.heroku.com
+              login $HEROKU_EMAIL
+              password $HEROKU_TOKEN
+            " > ~/.netrc
             
             heroku create oc-lettings-81
             # docker pull $DOCKER_USERNAME/ocrproject13:$CIRCLE_SHA1 
