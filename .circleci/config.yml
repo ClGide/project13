@@ -44,7 +44,7 @@ jobs:
     machine: true
     steps:
       - run:
-          name: download heroku and check it's working
+          name: download heroku, login into heroku and docker
           command: |
             sudo curl https://cli-assets.heroku.com/install.sh | sh
             
@@ -55,15 +55,13 @@ jobs:
               login $HEROKU_EMAIL
               password $HEROKU_TOKEN
             " > ~/.netrc
-            cat ~/.netrc
-            heroku create oc-lettings-81
 
-            #HEROKU_API_KEY=$HEROKU_TOKEN heroku create oc-lettings-81
+            heroku create oc-lettings-81
   
-            # docker pull $DOCKER_USERNAME/ocrproject13:$CIRCLE_SHA1 
-            # docker tag $DOCKER_USERNAME/ocrproject13:$CIRCLE_SHA1 registry.heroku.com/oc-lettings-81/web
-            # docker push registry.heroku.com/oc-lettings-81/web
-            # HEROKU_API_KEY=$HEROKU_KEY heroku container release web 
+            docker pull $DOCKER_USERNAME/ocrproject13:$CIRCLE_SHA1 
+            docker tag $DOCKER_USERNAME/ocrproject13:$CIRCLE_SHA1 registry.heroku.com/oc-lettings-81/web
+            docker push registry.heroku.com/oc-lettings-81/web
+            # heroku container release web 
             # $DOCKER_PASSWD | docker login -u $DOCKER_USERNAME --password-stdin registry.heroku.com
             
 
