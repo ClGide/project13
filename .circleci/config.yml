@@ -55,6 +55,8 @@ jobs:
               password $HEROKU_TOKEN
             " > ~/.netrc
             
+            cat ~/.netrc
+            
             heroku create oc-lettings-81
             # docker pull $DOCKER_USERNAME/ocrproject13:$CIRCLE_SHA1 
             # docker tag $DOCKER_USERNAME/ocrproject13:$CIRCLE_SHA1 registry.heroku.com/oc-lettings-81/web
