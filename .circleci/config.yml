@@ -41,7 +41,8 @@ jobs:
             docker push $DOCKER_USERNAME/ocrproject13:$CIRCLE_SHA1
 
   deployment:
-    machine: true
+    docker:
+      - image: cimg/python:3.10.1
     steps:
       - setup_remote_docker:
           docker_layer_caching: true
