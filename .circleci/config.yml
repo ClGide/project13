@@ -43,6 +43,8 @@ jobs:
   deployment:
     machine: true
     steps:
+      - setup_remote_docker:
+          docker_layer_caching: true
       - run:
           name: download heroku, login into heroku and docker
           command: |
