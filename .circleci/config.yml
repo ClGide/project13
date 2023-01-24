@@ -48,7 +48,7 @@ jobs:
           command: |
             sudo curl https://cli-assets.heroku.com/install.sh | sh
 
-            HEROKU_API_TOKEN=$HEROKU_KEY heroku create oc-lettings-81
+            HEROKU_API_KEY=$HEROKU_KEY heroku create oc-lettings-81
             
             # docker pull $DOCKER_USERNAME/ocrproject13:$CIRCLE_SHA1 
             # docker tag $DOCKER_USERNAME/ocrproject13:$CIRCLE_SHA1 registry.heroku.com/oc-lettings-81/web
