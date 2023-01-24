@@ -35,7 +35,7 @@ jobs:
           name: build and push image
           command: |
             docker build -t $DOCKER_USERNAME/ocrproject13:$CIRCLE_SHA1 .
-            # I could directly pass the passwd with the -p option. However, Using 
+            # I could directly pass the passwd with the -p option. However, using 
             # STDIN prevents the password from ending up in the shell’s history, or log-files.
             echo $DOCKER_PASSWD | docker login -u $DOCKER_USERNAME --password-stdin 
             docker push $DOCKER_USERNAME/ocrproject13:$CIRCLE_SHA1
@@ -47,13 +47,23 @@ jobs:
           name: download heroku and check it's working
           command: |
             sudo curl https://cli-assets.heroku.com/install.sh | sh
-
-            HEROKU_API_KEY=$HEROKU_KEY heroku create oc-lettings-81
             
+            printf "machine api.heroku.com
+              login $HEROKU_EMAIL
+              password $HEROKU_TOKEN
+            machine git.heroku.com
+              login $HEROKU_EMAIL
+              password $HEROKU_TOKEN
+            " > ~/.netrc
+            cat ~/.netrc
+            heroku create oc-lettings-81
+
+            #HEROKU_API_KEY=$HEROKU_TOKEN heroku create oc-lettings-81
+  
             # docker pull $DOCKER_USERNAME/ocrproject13:$CIRCLE_SHA1 
             # docker tag $DOCKER_USERNAME/ocrproject13:$CIRCLE_SHA1 registry.heroku.com/oc-lettings-81/web
             # docker push registry.heroku.com/oc-lettings-81/web
-            # heroku container release web 
+            # HEROKU_API_KEY=$HEROKU_KEY heroku container release web 
             # $DOCKER_PASSWD | docker login -u $DOCKER_USERNAME --password-stdin registry.heroku.com
             
 
@@ -69,6 +79,7 @@ workflows:
             branches:
               only: master
       - deployment:
+          context: project13
           requires:
             - containerization
           filters:
