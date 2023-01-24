@@ -43,6 +43,9 @@ jobs:
   deployment:
     docker:
       - image: cimg/python:3.10.1
+        auth:
+          username: $DOCKER_USERNAME
+          password: $DOCKER_PASSWD
     steps:
       - setup_remote_docker:
           docker_layer_caching: true
