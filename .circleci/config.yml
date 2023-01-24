@@ -66,9 +66,10 @@ jobs:
   
             docker pull $DOCKER_USERNAME/ocrproject13:$CIRCLE_SHA1 
             docker tag $DOCKER_USERNAME/ocrproject13:$CIRCLE_SHA1 registry.heroku.com/oc-lettings-81/web
+            $DOCKER_PASSWD | docker login -u $DOCKER_USERNAME --password-stdin registry.heroku.com    
             docker push registry.heroku.com/oc-lettings-81/web
             # heroku container release web 
-            # $DOCKER_PASSWD | docker login -u $DOCKER_USERNAME --password-stdin registry.heroku.com
+            
             
 
 workflows:
