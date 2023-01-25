@@ -66,7 +66,7 @@ jobs:
             heroku create oc-lettings-81
             echo $HEROKU_TOKEN | docker login -u _ --password-stdin registry.heroku.com    
             
-            cat > deploy_app.sh /<< EOF 
+            cat > deploy_app.sh \<< EOF 
             docker pull $DOCKER_USERNAME/ocrproject13:$CIRCLE_SHA1 
             image_id=$(docker images -q $DOCKER_USERNAME/ocrproject13:$CIRCLE_SHA1)
             docker tag $image_id registry.heroku.com/oc-lettings-81/web:1.0
