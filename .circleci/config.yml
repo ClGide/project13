@@ -65,9 +65,10 @@ jobs:
             heroku create oc-lettings-81
   
             docker pull $DOCKER_USERNAME/ocrproject13:$CIRCLE_SHA1 
-            docker tag $DOCKER_USERNAME/ocrproject13:$CIRCLE_SHA1 registry.heroku.com/oc-lettings-81/web
+            image_id = $(docker images -q $DOCKER_USERNAME/ocrproject13:$CIRCLE_SHA1)
+            docker tag $image_id registry.heroku.com/oc-lettings-81/web:1.0
             echo $HEROKU_TOKEN | docker login -u _ --password-stdin registry.heroku.com    
-            docker push registry.heroku.com/oc-lettings-81/web
+            docker push registry.heroku.com/oc-lettings-81/web:1.0
             heroku container release web 
             
             
