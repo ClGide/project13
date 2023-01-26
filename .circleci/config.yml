@@ -67,11 +67,10 @@ jobs:
             echo $HEROKU_TOKEN | docker login -u _ --password-stdin registry.heroku.com    
             
             cat > deploy_app.sh \<< EOF 
-            docker pull $DOCKER_USERNAME/ocrproject13:$CIRCLE_SHA1 
-            image_id="$(docker images -q $DOCKER_USERNAME/ocrproject13)"
-            docker tag "$image_id" registry.heroku.com/oc-lettings-81/web:1.0
+            docker pull $DOCKER_USERNAME/ocrproject13:$CIRCLE_SHA1
+            docker tag "$DOCKER_USERNAME/ocrproject13:$CIRCLE_SHA1" registry.heroku.com/oc-lettings-81/web:1.0
             docker push registry.heroku.com/oc-lettings-81/web:1.0
-            heroku container:release web            
+            heroku container:release web
             EOF
             
             chmod +x deploy_app.sh
