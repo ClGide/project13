@@ -69,6 +69,7 @@ jobs:
             cat > deploy_app.sh \<< EOF 
             docker pull $DOCKER_USERNAME/ocrproject13:$CIRCLE_SHA1 
             image_id=$(docker images -q $DOCKER_USERNAME/ocrproject13:$CIRCLE_SHA1 | awk '{print $1;}')
+            echo $image_id
             docker tag $image_id registry.heroku.com/oc-lettings-81/web:1.0
             docker push registry.heroku.com/oc-lettings-81/web:1.0
             heroku container:release web            
