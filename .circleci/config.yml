@@ -70,7 +70,7 @@ jobs:
             docker pull $DOCKER_USERNAME/ocrproject13:$CIRCLE_SHA1
             docker tag "$DOCKER_USERNAME/ocrproject13:$CIRCLE_SHA1" registry.heroku.com/oc-lettings-81/web:1.0
             docker push registry.heroku.com/oc-lettings-81/web:1.0
-            heroku container:release -a oc-lettings-81 web
+            heroku container:release web -a oc-lettings-81 
             EOF
             
             chmod +x deploy_app.sh
