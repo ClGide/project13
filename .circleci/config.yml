@@ -64,6 +64,7 @@ jobs:
             " > ~/.netrc
 
             heroku create oc-lettings-81
+            heroku plugins:install heroku-container-registry  # The heroku guide didn't mention it...
             echo $HEROKU_TOKEN | docker login -u _ --password-stdin registry.heroku.com    
             
             cat > deploy_app.sh \<< EOF 
