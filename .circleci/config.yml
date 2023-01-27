@@ -68,7 +68,7 @@ jobs:
             cat > deploy_app.sh \<< EOF
             #!/bin/bash
             heroku_app="oc-lettings-81"
-            heroku create "$heroku_app"
+            heroku create $heroku_app
             docker_image="$DOCKER_USERNAME/ocrproject13"
             docker pull "$docker_image"
             id=$(docker images | grep "$docker_image" -m 1 | awk '{print $3}')
