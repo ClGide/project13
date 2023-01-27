@@ -63,9 +63,8 @@ jobs:
               password $HEROKU_TOKEN
             " > ~/.netrc
 
-            heroku create oc-lettings-81
             echo $HEROKU_TOKEN | docker login -u _ --password-stdin registry.heroku.com    
-            heroku plugins:install heroku-container-registry  # The heroku guide didn't mention it...
+            heroku create oc-lettings-81
             
             cat > deploy_app.sh \<< EOF 
             docker pull $DOCKER_USERNAME/ocrproject13:$CIRCLE_SHA1
