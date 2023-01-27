@@ -66,6 +66,7 @@ jobs:
             echo $HEROKU_TOKEN | docker login -u _ --password-stdin registry.heroku.com    
             
             cat > deploy_app.sh \<< EOF
+            #!/bin/bash
             heroku_app=oc-lettings-81
             heroku create "$heroku_app"
             docker_image="$DOCKER_USERNAME/ocrproject13"
