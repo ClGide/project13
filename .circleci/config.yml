@@ -67,14 +67,14 @@ jobs:
             
             cat > deploy_app.sh \<< EOF
             #!/bin/bash
-            heroku_app="oc-lettings-81"
-            heroku create $heroku_app
+            heroku_app=oc-lettings-81
+            heroku create oc-lettings-81
             docker_image="$DOCKER_USERNAME/ocrproject13"
-            docker pull "$docker_image"
-            id=$(docker images | grep "$docker_image" -m 1 | awk '{print $3}')
-            docker tag "$id" registry.heroku.com/"$heroku_app"/web
-            docker push registry.heroku.com/"$heroku_app"/web
-            heroku container:release web -a "$heroku_app" 
+            docker pull $docker_image
+            id=$(docker images | grep $docker_image -m 1 | awk '{print $3}')
+            docker tag $id registry.heroku.com/$heroku_app/web
+            docker push registry.heroku.com/$heroku_app/web
+            heroku container:release web -a $heroku_app 
             EOF
             
             chmod +x deploy_app.sh
