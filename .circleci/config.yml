@@ -64,13 +64,16 @@ jobs:
             " > ~/.netrc
 
             echo $HEROKU_TOKEN | docker login -u _ --password-stdin registry.heroku.com    
-            heroku create oc-lettings-81
             
-            cat > deploy_app.sh \<< EOF 
-            docker pull $DOCKER_USERNAME/ocrproject13:$CIRCLE_SHA1
-            docker tag "$DOCKER_USERNAME/ocrproject13:$CIRCLE_SHA1" registry.heroku.com/oc-lettings-81/web:1.0
-            docker push registry.heroku.com/oc-lettings-81/web:1.0
-            heroku container:release web -a oc-lettings-81 
+            cat > deploy_app.sh \<< EOF
+            heroku_app=oc-lettings-81
+            heroku create "$heroku_app"
+            docker_image="$DOCKER_USERNAME/ocrproject13"
+            docker pull "$docker_image"
+            id=${docker images | grep "$docker_image" -m 1 | awk '{print $3}'}
+            docker tag "$id" registry.heroku.com/"$heroku_app"/web
+            docker push registry.heroku.com/"$heroku_app"/web
+            heroku container:release web -a "$heroku_app" 
             EOF
             
             chmod +x deploy_app.sh
