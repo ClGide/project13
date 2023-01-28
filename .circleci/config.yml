@@ -75,13 +75,13 @@ jobs:
             set -o pipefail
             
             heroku_app=oc-lettings-81
-            docker_image=${DOCKER_USERNAME}/ocrproject13
-            heroku create ${heroku_app}
-            docker pull ${docker_image}
-            id=$(docker images | grep ${docker_image} -m 1 | awk '{print $3}')
-            docker tag ${id} registry.heroku.com/${heroku_app}/web
-            docker push registry.heroku.com/${heroku_app}/web
-            heroku container:release web --app=${heroku_app} 
+            docker_image=$DOCKER_USERNAME/ocrproject13
+            heroku create $heroku_app
+            docker pull $docker_image
+            id=$(docker images | grep $docker_image -m 1 | awk '{print $3}')
+            docker tag $id registry.heroku.com/$heroku_app/web
+            docker push registry.heroku.com/$heroku_app/web
+            heroku container:release web --app=$heroku_app 
             EOF
             
             chmod +x deploy_app.sh
