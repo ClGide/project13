@@ -57,9 +57,10 @@ jobs:
               login $HEROKU_EMAIL
               password $HEROKU_TOKEN
             " > ~/.netrc
-
-            heroku create oc-lettings-81
+            
+            ls 
             heroku container:login 
+            heroku create oc-lettings-81
             heroku container:push web -app=oc-lettings-81
             heroku container:release web --app=oc-lettings-81
             
