@@ -61,7 +61,7 @@ jobs:
             echo $(ls)
             heroku container:login 
             heroku create oc-lettings-81
-            heroku container:push web -app=oc-lettings-81
+            heroku container:push web --app=oc-lettings-81
             heroku container:release web --app=oc-lettings-81
             
 
