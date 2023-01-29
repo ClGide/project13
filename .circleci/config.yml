@@ -42,16 +42,11 @@ jobs:
 
   deployment:
     working_directory: ~/circleci-python
-    docker:
-      - image: cimg/python:3.10.1
-        auth:
-          username: $DOCKER_USERNAME
-          password: $DOCKER_PASSWD
+    machine: true
     steps:
-      - setup_remote_docker:
-          docker_layer_caching: true
+      - checkout
       - run:
-          name: download heroku, login into heroku and docker
+          name: login to heroku, build docker image and release image
           command: |
             sudo curl https://cli-assets.heroku.com/install.sh | sh
             
@@ -66,10 +61,7 @@ jobs:
             echo $HEROKU_TOKEN | docker login -u _ --password-stdin registry.heroku.com    
                         
             heroku create oc-lettings-81
-            docker pull $DOCKER_USERNAME/ocrproject13:$CIRCLE_SHA1
-            id=$(docker images | grep $DOCKER_USERNAME/ocrproject13:$CIRCLE_SHA1 -m 1 | awk '{print $3}')
-            docker tag $id registry.heroku.com/oc-lettings-81/web
-            docker push registry.heroku.com/oc-lettings-81/web
+            heroku container:push -app=oc-lettings-81
             heroku container:release web --app=oc-lettings-81
             
 
