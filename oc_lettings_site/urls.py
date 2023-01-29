@@ -5,8 +5,10 @@ from . import views
 from .lettings.urls import letting_patterns
 from .profiles.urls import profile_patterns
 
+
 def trigger_error(request):
-    return 1/0
+    return 1 / 0
+
 
 urlpatterns = [
     path('', views.welcome, name='welcome'),
