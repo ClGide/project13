@@ -27,7 +27,7 @@ if "SECRET_KEY" in os.environ:
     SECRET_KEY = os.environ["SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-IS_HEROKU="DYNO" in os.environ
+IS_HEROKU ="DYNO" in os.environ
 
 if not IS_HEROKU:
     DEBUG = True
