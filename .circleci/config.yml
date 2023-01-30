@@ -58,8 +58,9 @@ jobs:
               password $HEROKU_TOKEN
             " > ~/.netrc
             
-            echo $(ls)
-            heroku container:login 
+            heroku container:login
+            heroku addons:create sentry:free
+            sentry_sdk test `heroku config:get $SENTRY_DSN`
             heroku create oc-lettings-81
             heroku container:push web --app=oc-lettings-81
             heroku container:release web --app=oc-lettings-81

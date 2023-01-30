@@ -3,8 +3,6 @@ import os
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 sentry_sdk.init(
     dsn="https://85893aec70e047dd841450d2133b113c@o4504526245462016@sentry.io/4504526256340992",
@@ -14,6 +12,10 @@ sentry_sdk.init(
 
     send_default_pii=True
 )
+
+# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
