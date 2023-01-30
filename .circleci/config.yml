@@ -61,7 +61,6 @@ jobs:
             heroku container:login
             heroku create oc-lettings-81
             heroku addons:create sentry:free --app=oc-lettings-81
-            sentry_sdk test `heroku config:get $SENTRY_DSN`
             heroku container:push web --app=oc-lettings-81
             heroku container:release web --app=oc-lettings-81
             
