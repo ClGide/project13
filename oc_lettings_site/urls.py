@@ -9,8 +9,10 @@ from .profiles.urls import profile_patterns
 
 capture_message("Hello World")  # Will create an event in Sentry.
 
+
 def trigger_error():
     return 1 / 0
+
 
 urlpatterns = [
     path('', views.welcome, name='welcome'),

@@ -62,6 +62,7 @@ jobs:
             heroku create oc-lettings-81
             heroku addons:create sentry:free --app=oc-lettings-81
             heroku config:get $SENTRY_DSN
+            heroku labs:enable runtime-dyno-metadata --app=oc-lettings-81
             heroku container:push web --app=oc-lettings-81
             heroku container:release web --app=oc-lettings-81
             
