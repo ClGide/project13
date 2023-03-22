@@ -52,10 +52,10 @@ jobs:
             
             printf "machine api.heroku.com
               login $HEROKU_EMAIL
-              password $HEROKU_TOKEN
+              apikey $HEROKU_TOKEN
             machine git.heroku.com
               login $HEROKU_EMAIL
-              password $HEROKU_TOKEN
+              apikey $HEROKU_TOKEN
             " > ~/.netrc
             
             heroku container:login
