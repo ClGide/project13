@@ -10,7 +10,7 @@ from .profiles.urls import profile_patterns
 capture_message("Hello World")  # Will create an event in Sentry.
 
 
-def trigger_error():
+def trigger_error(request):
     return 1 / 0
 
 
