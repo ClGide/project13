@@ -7,14 +7,15 @@ from .lettings.urls import letting_patterns
 from .profiles.urls import profile_patterns
 
 
+def divide_by_zero():
+    return 1/0
+
+
 def trigger_error(request):
-    return 1 / 0
-
-
-try:
-    trigger_error(request=None)
-except Exception as e:
-    capture_exception(e)
+    try:
+        divide_by_zero()
+    except Exception as e:
+        capture_exception(e)
 
 
 urlpatterns = [
