@@ -7,11 +7,12 @@ from .lettings.urls import letting_patterns
 from .profiles.urls import profile_patterns
 
 
-def trigger_error():
+def trigger_error(request):
     return 1 / 0
 
+
 try:
-    trigger_error()
+    trigger_error(request=None)
 except Exception as e:
     capture_exception(e)
 
