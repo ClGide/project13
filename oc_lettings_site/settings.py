@@ -16,21 +16,18 @@ sentry_sdk.init(
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
-    'formatters': {
-        'console': {
-                "format": "%(asctime)s %(name)-12s %(levelname)-8s %(message)s",
-        },
-    },
     'handlers': {
-        'sentry': {
-            'level': 'ERROR',
-            'class': 'sentry_sdk.integrations.django.DjangoIntegration',
-        },
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+        }
     },
-    'root': {
-        'handlers': ['sentry'],
-        'level': 'INFO',
-    },
+    'loggers': {
+        'project.custom': {
+            'level': 'DEBUG',
+            'handlers': ['console', ],
+        }
+    }
 }
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
